@@ -1,3 +1,7 @@
 from django.contrib import admin
+from auth.models import InviteCode
 
-# Register your models here.
+
+@admin.register(InviteCode)
+class InviteCodeAdmin(admin.ModelAdmin):
+    pass

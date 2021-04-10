@@ -6,6 +6,16 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework.validators import UniqueValidator
 import uuid
 
+from auth.models import InviteCode
+
+
+class InviteCodeSerializer(ModelSerializer):
+    code_exist = BooleanField(read_only=True)
+
+    class Meta:
+        model = InviteCode
+        fields = ('code')
+
 
 class RegisterSerializer(ModelSerializer):
     email = EmailField(
@@ -27,6 +37,9 @@ class RegisterSerializer(ModelSerializer):
             first_name=validated_data['first_name'],
         )
 
+        InviteCode.objects.create(
+            code = uuid.uuid4().hex[:8].upper(),
+            user = user
         )
 
         user.set_password(validated_data['password'])

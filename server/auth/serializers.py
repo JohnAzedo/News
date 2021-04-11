@@ -10,11 +10,9 @@ from auth.models import InviteCode
 
 
 class InviteCodeSerializer(ModelSerializer):
-    code_exist = BooleanField(read_only=True)
-
     class Meta:
         model = InviteCode
-        fields = ('code')
+        fields = ['code']
 
 
 class RegisterSerializer(ModelSerializer):

@@ -1,3 +1,18 @@
-from django.shortcuts import render
+from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+from news.models import News
+from news.serializers import NewsSerializer
 
-# Create your views here.
+
+class NewsListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = NewsSerializer
+    queryset = News.objects.all()
+
+
+class NewsDetailView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = NewsSerializer
+    queryset = News.objects.all()
+    lookup_field = 'pk'
+

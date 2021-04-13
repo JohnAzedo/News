@@ -1,12 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'code.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  void navigateToInviteCode(BuildContext context){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => InviteCodeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     text: 'Cadastre-se',
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => {}
+                      ..onTap = () => navigateToInviteCode(context)
                   ),
                 )
               ],

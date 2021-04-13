@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:news/components/textField.dart';
 import 'package:news/screens/auth/register.dart';
 
 class InviteCodeScreen extends StatefulWidget {
@@ -27,11 +28,10 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
           children: [
             Text('Código convite'),
             Text('Digite o código contive compartilhado com você'),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Código',
-              ),
-            )
+            CustomTextField(
+              label: 'Código',
+              icon: Icon(Icons.code),
+            ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/components/textField.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -14,27 +15,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           children: [
             Text('Criar conta'),
-            TextField(
-              decoration: InputDecoration(
-                suffixIcon: Icon(Icons.person),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                labelText: 'Nome',
-              ),
+            CustomTextField(
+              label: 'Nome',
+              icon: Icon(Icons.person),
             ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Email'),
+            CustomTextField(
+              label: 'Email',
+              icon: Icon(Icons.email),
             ),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Senha'),
+            CustomTextField(
+              isPassword: true,
+              label: 'Senha',
+              icon: Icon(Icons.lock),
             ),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Confirmação de senha'),
+            CustomTextField(
+              isPassword: true,
+              label: 'Confirmar senha',
+              icon: Icon(Icons.lock),
             ),
             ElevatedButton(
               onPressed: () => {},

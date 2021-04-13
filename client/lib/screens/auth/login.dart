@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:news/components/textField.dart';
 
 import 'code.dart';
 
@@ -27,11 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Text('Entrar'),
             Text('Por favor, faça login para continuar.'),
-            TextField(
-              decoration: InputDecoration(labelText: 'Email'),
+            CustomTextField(
+              label: 'Email',
+              icon: Icon(Icons.email),
             ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Senha'),
+            CustomTextField(
+              label: 'Senha',
+              icon: Icon(Icons.lock),
             ),
             Row(
               children: [

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:news/screens/auth/register.dart';
 
 class InviteCodeScreen extends StatefulWidget {
   @override
@@ -8,6 +9,15 @@ class InviteCodeScreen extends StatefulWidget {
 }
 
 class _InviteCodeScreenState extends State<InviteCodeScreen> {
+
+  void navigateToRegister(BuildContext context){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => RegisterScreen(),
+      ),
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +37,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward),
-        onPressed: () => {},
+        onPressed: () => navigateToRegister(context),
       ),
     );
   }

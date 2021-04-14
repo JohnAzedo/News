@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:news/components/textField.dart';
+import 'package:news/components/customTextField.dart';
 import 'package:news/screens/auth/register.dart';
 
 class InviteCodeScreen extends StatefulWidget {

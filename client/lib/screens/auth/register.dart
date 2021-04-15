@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/components/customTextField.dart';
+import 'package:news/models/user.dart';
+import 'package:news/repositories/auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -7,11 +9,24 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final AuthRepository repository = AuthRepository();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
+  Future<void> _createUser() async{
+    final User user = User(
+      name: _nameController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+      confirmPassword: _passwordController.text
+    );
+
+    return repository.register(user).then((value) => {
+      debugPrint('Here')
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               icon: Icon(Icons.lock),
             ),
             ElevatedButton(
-              onPressed: () => {
-                
-              },
+              onPressed: () => _createUser(),
               child: Text('Criar'),
             )
           ],

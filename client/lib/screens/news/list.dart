@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news/models/news.dart';
+import 'package:news/repositories/news.dart';
 
 class ListNews extends StatefulWidget {
   @override
@@ -6,11 +8,38 @@ class ListNews extends StatefulWidget {
 }
 
 class _ListNewsState extends State<ListNews> {
+  final NewsRepository repository = NewsRepository();
+  List<News> _news = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getNews();
+  }
+
+  Future<void> _getNews() async {
+    return repository.fetchAll().then((news) {
+      setState(() {
+        this._news = news;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Notícias'),
+      ),
+      body: RefreshIndicator(
+        onRefresh: _getNews,
+        child: ListView.builder(
+          itemCount: _news.length,
+          itemBuilder: (BuildContext context, index) {
+            News uNews = _news[index];
+            return Text(uNews.title);
+          },
+        ),
       ),
     );
   }

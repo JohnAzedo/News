@@ -10,7 +10,7 @@ class User{
   User({
     this.id,
     @required this.email,
-    @required this.name,
+    this.name,
     this.password,
     this.confirmPassword
   });

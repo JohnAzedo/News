@@ -2,11 +2,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.fields import CharField, EmailField, BooleanField
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework.validators import UniqueValidator
 import uuid
 
 from auth.models import InviteCode
+
+class CheckEmailExistsSerializer(Serializer):
+    used = serializers.BooleanField()
 
 
 class InviteCodeSerializer(ModelSerializer):

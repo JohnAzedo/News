@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/models/news.dart';
 import 'package:news/repositories/news.dart';
+import 'package:news/screens/news/components/card.dart';
 
 class ListNews extends StatefulWidget {
   @override
@@ -33,12 +34,17 @@ class _ListNewsState extends State<ListNews> {
       ),
       body: RefreshIndicator(
         onRefresh: _getNews,
-        child: ListView.builder(
-          itemCount: _news.length,
-          itemBuilder: (BuildContext context, index) {
-            News uNews = _news[index];
-            return Text(uNews.title);
-          },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView.builder(
+            itemCount: _news.length,
+            itemBuilder: (BuildContext context, index) {
+              News uNews = _news[index];
+              return CardNews(
+                news: uNews,
+              );
+            },
+          ),
         ),
       ),
     );

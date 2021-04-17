@@ -4,7 +4,9 @@ class News {
   String subtitle;
   String text;
   String author;
+  DateTime date;
   int likes;
+  int numComments;
   List<int> comments;
 
   News({
@@ -13,7 +15,9 @@ class News {
     this.subtitle,
     this.text,
     this.author,
+    this.date,
     this.likes,
+    this.numComments,
     this.comments
   });
 
@@ -22,5 +26,8 @@ class News {
         title = json['title'],
         subtitle = json['subtitle'],
         text = json['text'],
-        author = json['author'];
+        author = json['author'],
+        likes = json['likes'],
+        numComments = json['comments'],
+        date = DateTime.parse(json['created_at'].toString());
 }

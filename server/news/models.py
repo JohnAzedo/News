@@ -8,6 +8,7 @@ class News(models.Model):
     text = models.TextField()
     author = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField()
     likes = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
 
@@ -17,6 +18,11 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, **kwargs):
+        self.likes = UserNews.objects.filter(news=self.id).count()
+        self.comments = Comment.objects.filter(news=self.id).count()
+        super(News, self).save(**kwargs)
 
 
 class UserNews(models.Model):

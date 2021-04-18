@@ -135,15 +135,18 @@ class _DetailNewsState extends State<DetailNews> {
                           vertical: 16.0,
                           horizontal: 0.0,
                         ),
-                        child: Text(
-                          _news.text,
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                              fontSize: 20.0,
-                            ),
+                        child: Image(
+                          image: NetworkImage(_news.urlImage),
+                        ),
+                      ),
+                      Text(
+                        _news.text,
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontSize: 20.0,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -6,6 +6,7 @@ import 'package:news/models/news.dart';
 class CardNews extends StatelessWidget {
   final News news;
   final Function onTap;
+
   CardNews({@required this.news, @required this.onTap});
 
   @override
@@ -23,7 +24,6 @@ class CardNews extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Title
                 Text(
                   news.title,
                   style: TextStyle(
@@ -44,7 +44,10 @@ class CardNews extends StatelessWidget {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 0.0,
+                          ),
                           child: Column(
                             children: [
                               Icon(Icons.comment_outlined),
@@ -53,7 +56,10 @@ class CardNews extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 0.0,
+                          ),
                           child: Column(
                             children: [
                               Icon(Icons.favorite_border_outlined),

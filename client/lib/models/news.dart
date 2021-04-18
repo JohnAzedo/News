@@ -7,6 +7,7 @@ class News {
   DateTime date;
   int likes;
   int numComments;
+  String urlImage;
   List<int> comments;
 
   News({
@@ -18,7 +19,8 @@ class News {
     this.date,
     this.likes,
     this.numComments,
-    this.comments
+    this.comments,
+    this.urlImage
   });
 
   News.fromJson(Map<String, dynamic> json)
@@ -29,5 +31,6 @@ class News {
         author = json['author'],
         likes = json['likes'],
         numComments = json['comments'],
-        date = DateTime.parse(json['created_at'].toString());
+        date = DateTime.parse(json['created_at'].toString()),
+        urlImage = json['image'];
 }

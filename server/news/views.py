@@ -11,7 +11,7 @@ class NewsListView(ListAPIView):
 
 
 class NewsDetailView(RetrieveAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = NewsSerializer
     queryset = News.objects.all()
     lookup_field = 'pk'

@@ -14,4 +14,9 @@ class NewsRepository extends Repository{
     return news;
   }
 
+  Future<News> getNews(int id) async{
+    Response response = await dio.get("$ipAddress/$baseUrl/$id");
+    return News.fromJson(response.data);
+  }
+
 }

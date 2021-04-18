@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news/models/news.dart';
 import 'package:news/repositories/news.dart';
 import 'package:news/screens/news/components/card.dart';
+import 'package:news/screens/news/detail.dart';
 
 class ListNews extends StatefulWidget {
   @override
@@ -26,6 +27,14 @@ class _ListNewsState extends State<ListNews> {
     });
   }
 
+  void _navigateToDetail(BuildContext context, int newsID) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => DetailNews(newsID),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +51,7 @@ class _ListNewsState extends State<ListNews> {
               News uNews = _news[index];
               return CardNews(
                 news: uNews,
+                onTap: () => _navigateToDetail(context, uNews.id),
               );
             },
           ),

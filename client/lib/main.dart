@@ -6,11 +6,13 @@ import 'package:news/screens/news/list.dart';
 void main() => runApp(NewsApp());
 
 class NewsApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Jiffy.locale("pt");
     return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
       home: ListNews(),
     );

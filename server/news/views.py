@@ -5,13 +5,13 @@ from news.serializers import NewsSerializer, NewsListSerializer
 
 
 class NewsListView(ListAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     serializer_class = NewsListSerializer
     queryset = News.objects.all()
 
 
 class NewsDetailView(RetrieveAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     serializer_class = NewsSerializer
     queryset = News.objects.all()
     lookup_field = 'pk'

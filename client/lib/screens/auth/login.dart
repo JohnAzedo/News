@@ -19,26 +19,30 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _handleAuthError() {}
-
-  void _saveToken(Token token) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString('token_access', token.access);
-    await preferences.setString('token_refresh', token.refresh);
-  }
-
-  Future<void> _login(BuildContext context) async {
+  void _login(BuildContext context){
     final User user = User(
       email: _emailController.text,
       password: _passwordController.text,
     );
 
+    if(user.email != '' && user.password != ''){
+      _getTokens(context, user);
+    } else {
+      showCheckNullValuesSnackBar(context);
+    }
+  }
+
+  Future<void> _getTokens(BuildContext context, User user) async {
     return repository.login(user).then((token) {
       _saveToken(token);
       navigateToNews(context);
-    }).catchError((onError) {
-      debugPrint('Teste');
-    });
+    }).catchError((onError) => showErrorAuthSnackBar(context));
+  }
+
+  void _saveToken(Token token) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString('token_access', token.access);
+    await preferences.setString('token_refresh', token.refresh);
   }
 
   @override
@@ -81,6 +85,26 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void showErrorAuthSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Email ou senha incorreto!'),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void showCheckNullValuesSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Por favor, digite email e senha.'),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void navigateToInviteCode(BuildContext context) {

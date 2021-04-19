@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:news/screens/auth/login.dart';
 import 'package:news/screens/news/list.dart';
+import 'package:news/screens/splash.dart';
 
 void main() => runApp(NewsApp());
 
@@ -14,7 +15,7 @@ class NewsApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: ListNews(),
+      home: SplashScreen(),
     );
   }
 }

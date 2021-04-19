@@ -45,4 +45,32 @@ class AuthRepository extends Repository{
 
     return Token.fromJson(response.data);
   }
+
+  Future<bool> verifyToken(Token token) async {
+    Map<String, dynamic> data = {
+      "token": token.access
+    };
+
+    Response response = await dio.post(
+      "$ipAddress/$baseUrl/api/token/verify",
+      data: jsonEncode(data)
+    );
+
+    return response.statusCode == 200;
+  }
+
+  Future<Token> refreshToken(Token token) async {
+    Map<String, dynamic> data = {
+      "refresh": token.refresh
+    };
+
+    Response response = await dio.post(
+        "$ipAddress/$baseUrl/api/token/refresh",
+        data: jsonEncode(data)
+    );
+
+    token.access = response.data['access'];
+    return token;
+  }
+
 }

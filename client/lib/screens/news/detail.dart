@@ -6,7 +6,6 @@ import 'package:news/repositories/news.dart';
 
 class DetailNews extends StatefulWidget {
   final int _newsId;
-
   DetailNews(this._newsId);
 
   @override
@@ -32,8 +31,18 @@ class _DetailNewsState extends State<DetailNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test'),
-        actions: [Icon(Icons.favorite_border_outlined)],
+        actions: [
+          GestureDetector(
+            onTap: (){},
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 0.0
+              ),
+              child: Icon(Icons.favorite_border_outlined),
+            ),
+          )
+        ],
       ),
       body: FutureBuilder<News>(
         future: _getNews(),
@@ -42,7 +51,7 @@ class _DetailNewsState extends State<DetailNews> {
 
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              // TODO: Handle this case.
+              return Text("No connection");
               break;
             case ConnectionState.waiting:
               return Progress();
@@ -147,6 +156,12 @@ class _DetailNewsState extends State<DetailNews> {
                           ),
                         ),
                       ),
+                      // ListView.builder(
+                      //   itemCount: 10,
+                      //   itemBuilder: (BuildContext context, index){
+                      //
+                      //   },
+                      // )
                     ],
                   ),
                 ),

@@ -8,8 +8,6 @@ import 'package:splashscreen/splashscreen.dart';
 
 class CustomSplashScreen extends StatelessWidget {
   final AuthRepository repository = AuthRepository();
-  final String errorToken =
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4MjcwODc2LCJqdGkiOiIwMmYyZjJlOTQ5MWE0NGUyYmM1M2NiYjMwNDM5MWQ3NCIsInVzZXJfaWQiOjV9.ObCSKC_Dj6x93RgY-STjPGuYw1hfStLuFKb3Byaa50k";
   bool logged;
 
   Future<dynamic> alreadyLogged() async {
@@ -26,8 +24,9 @@ class CustomSplashScreen extends StatelessWidget {
       logged = false;
     });
 
-    await repository.refreshToken(token).then((token) {
+    await repository.refreshToken(token).then((newToken) {
       logged = true;
+      _saveToken(newToken);
     }).catchError((onError) {
       logged = false;
     });
@@ -35,8 +34,13 @@ class CustomSplashScreen extends StatelessWidget {
     if (logged) {
       return ListNews();
     }
-
     return LoginScreen();
+  }
+
+  void _saveToken(Token token) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString('token_access', token.access);
+    await preferences.setString('token_refresh', token.refresh);
   }
 
   @override

@@ -24,12 +24,15 @@ class CustomSplashScreen extends StatelessWidget {
       logged = false;
     });
 
-    await repository.refreshToken(token).then((newToken) {
-      logged = true;
-      _saveToken(newToken);
-    }).catchError((onError) {
-      logged = false;
-    });
+    if(!logged){
+      await repository.refreshToken(token).then((newToken) {
+        logged = true;
+        _saveToken(newToken);
+      }).catchError((onError) {
+        logged = false;
+      });
+    }
+
 
     if (logged) {
       return ListNews();

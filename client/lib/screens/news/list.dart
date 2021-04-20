@@ -9,7 +9,7 @@ class ListNews extends StatefulWidget {
   _ListNewsState createState() => _ListNewsState();
 }
 
-class _ListNewsState extends State<ListNews> {
+class _ListNewsState extends State<ListNews>{
   final NewsRepository repository = NewsRepository();
   List<News> _news = [];
 

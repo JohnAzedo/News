@@ -9,8 +9,8 @@ class News(models.Model):
     author = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField()
-    likes = models.IntegerField(default=0)
-    comments = models.IntegerField(default=0)
+    # likes = models.IntegerField(default=0)
+    # qComments = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'News'
@@ -19,10 +19,18 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, **kwargs):
-        self.likes = UserNews.objects.filter(news=self.id).count()
-        self.comments = Comment.objects.filter(news=self.id).count()
-        super(News, self).save(**kwargs)
+    @property
+    def number_comments(self):
+        return Comment.objects.filter(news_id=self.id).count()
+
+    @property
+    def number_likes(self):
+        return UserNews.objects.filter(news_id=self.id).count()
+
+    # def save(self, **kwargs):
+    #     self.likes = UserNews.objects.filter(news=self.id).count()
+    #     self.comments = Comment.objects.filter(news=self.id).count()
+    #     super(News, self).save(**kwargs)
 
 
 class UserNews(models.Model):
@@ -41,13 +49,14 @@ class UserNews(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    news = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
+        ordering = ['-created_at', 'pk']
 
     def __str__(self):
         return f'{self.user.first_name} - {self.news.title}'

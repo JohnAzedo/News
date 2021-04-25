@@ -33,7 +33,6 @@ class CustomSplashScreen extends StatelessWidget {
       });
     }
 
-
     if (logged) {
       return ListNews();
     }

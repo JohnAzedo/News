@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/progress.dart';
+import 'package:news/models/comment.dart';
 import 'package:news/models/news.dart';
 import 'package:news/repositories/news.dart';
+import 'package:news/screens/news/components/commentCard.dart';
 
 class DetailNews extends StatefulWidget {
   final int _newsId;
+
   DetailNews(this._newsId);
 
   @override
@@ -33,12 +36,10 @@ class _DetailNewsState extends State<DetailNews> {
       appBar: AppBar(
         actions: [
           GestureDetector(
-            onTap: (){},
+            onTap: () {},
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 0.0
-              ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
               child: Icon(Icons.favorite_border_outlined),
             ),
           )
@@ -156,12 +157,41 @@ class _DetailNewsState extends State<DetailNews> {
                           ),
                         ),
                       ),
-                      // ListView.builder(
-                      //   itemCount: 10,
-                      //   itemBuilder: (BuildContext context, index){
-                      //
-                      //   },
-                      // )
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                          horizontal: 0.0,
+                        ),
+                        child: Divider(
+                          color: Colors.black54,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Comentários',
+                          style: GoogleFonts.openSans(
+                            textStyle: TextStyle(fontSize: 20),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                          horizontal: 0.0,
+                        ),
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: _news.comments.length,
+                          itemBuilder: (BuildContext context, index) {
+                            Comment comment = _news.comments[index];
+                            return CardComment(comment: comment);
+                          },
+                        ),
+                      )
                     ],
                   ),
                 ),

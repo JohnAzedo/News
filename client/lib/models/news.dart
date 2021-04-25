@@ -1,3 +1,5 @@
+import 'package:news/models/comment.dart';
+
 class News {
   int id;
   String title;
@@ -8,7 +10,7 @@ class News {
   int likes;
   int numComments;
   String urlImage;
-  List<int> comments;
+  List<Comment> comments;
 
   News({
     this.id,
@@ -29,8 +31,9 @@ class News {
         subtitle = json['subtitle'],
         text = json['text'],
         author = json['author'],
-        likes = json['likes'],
-        numComments = json['comments'],
+        likes = json['number_likes'],
+        numComments = json['number_comments'],
+        comments = (json['comments'] as List)?.map((item) => Comment.fromJson(item))?.toList(),
         date = DateTime.parse(json['created_at'].toString()),
         urlImage = json['image'];
 }

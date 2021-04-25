@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/models/news.dart';
 import 'package:news/repositories/news.dart';
-import 'package:news/screens/news/components/card.dart';
+import 'package:news/screens/news/components/newsCard.dart';
 import 'package:news/screens/news/detail.dart';
 
 class ListNews extends StatefulWidget {

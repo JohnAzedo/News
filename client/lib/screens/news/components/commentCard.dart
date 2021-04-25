@@ -27,15 +27,12 @@ class CardComment extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16.0,
-                horizontal: 0.0,
-              ),
+              padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
               child: Text(
                 comment.text,
                 style: GoogleFonts.openSans(
                   textStyle: TextStyle(fontSize: 16),
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   letterSpacing: 0.4,
                 ),
               ),

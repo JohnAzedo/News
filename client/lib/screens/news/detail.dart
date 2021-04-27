@@ -178,6 +178,26 @@ class _DetailNewsState extends State<DetailNews> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
+                          vertical: 8.0,
+                          horizontal: 4.0,
+                        ),
+                        child: Column(
+                          children: [
+                            TextField(
+                              decoration: InputDecoration(
+                                  labelText: "Deixe seu comentário"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => {},
+                              child: Text(
+                                'Enviar',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 0.0,
                         ),

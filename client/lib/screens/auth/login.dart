@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   Text(
-                    'Não possui conta ainda? ',
+                    'Ainda não possui conta? ',
                     style: GoogleFonts.openSans(
                       color: Colors.black54,
                       fontWeight: FontWeight.normal,

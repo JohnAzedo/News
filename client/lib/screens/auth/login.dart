@@ -54,60 +54,77 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 60),
-              Text(
-                'Bem vindo!',
-                style: GoogleFonts.openSans(
-                  color: Colors.blue,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'Por favor, faça login para continuar.',
-                style: GoogleFonts.openSans(
-                  color: Colors.blue,
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(height: 36),
-              CustomTextField(
-                controller: _emailController,
-                label: 'Email',
-                icon: Icon(Icons.email),
-              ),
-              CustomTextField(
-                controller: _passwordController,
-                isPassword: true,
-                label: 'Senha',
-                icon: Icon(Icons.lock),
-              ),
-              SizedBox(height: 24),
-              SizedBox(
-                height: 40,
-                width: Size.infinite.width,
-                child: ElevatedButton(
-                  onPressed: () => _login(context),
-                  child: Text(
-                    'Entrar',
+              Column(
+                children: [
+                  SizedBox(height: 60),
+                  Text(
+                    'Bem vindo!',
                     style: GoogleFonts.openSans(
-                      color: Colors.white,
+                      color: Colors.blue,
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
                     ),
                   ),
-                ),
+                  Text(
+                    'Por favor, faça login para continuar.',
+                    style: GoogleFonts.openSans(
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(height: 36),
+                  CustomTextField(
+                    controller: _emailController,
+                    label: 'Email',
+                    icon: Icon(Icons.email),
+                  ),
+                  CustomTextField(
+                    controller: _passwordController,
+                    isPassword: true,
+                    label: 'Senha',
+                    icon: Icon(Icons.lock),
+                  ),
+                  SizedBox(height: 24),
+                  SizedBox(
+                    height: 40,
+                    width: Size.infinite.width,
+                    child: ElevatedButton(
+                      onPressed: () => _login(context),
+                      child: Text(
+                        'Entrar',
+                        style: GoogleFonts.openSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [
-                  Text('Não possui conta ainda? '),
+                  Text(
+                    'Não possui conta ainda? ',
+                    style: GoogleFonts.openSans(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                    ),
+                  ),
                   RichText(
                     text: TextSpan(
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                        text: 'Cadastre-se',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => navigateToInviteCode(context)),
+                      text: 'Cadastre-se',
+                      style: GoogleFonts.openSans(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => navigateToInviteCode(context),
+                    ),
                   )
                 ],
               )

@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              SizedBox(height: 40),
+              SizedBox(height: 60),
               Text(
                 'Bem vindo!',
                 style: GoogleFonts.openSans(

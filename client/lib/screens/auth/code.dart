@@ -21,7 +21,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastre-se'),
+        title: Text('Criar Conta 1/2'),
       ),
       body: SafeArea(
         child: Padding(

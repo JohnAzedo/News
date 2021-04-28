@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
 import 'package:news/models/user.dart';
 import 'package:news/repositories/auth.dart';
@@ -34,10 +35,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text('Criar conta'),
+              Text(
+                'Agora precisamos de algumas informações para finalizar seu cadastro.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.openSans(
+                  color: Colors.blue,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 24),
               CustomTextField(
                 controller: _nameController,
                 label: 'Nome',

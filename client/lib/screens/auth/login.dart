@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
 import 'package:news/models/token.dart';
 import 'package:news/models/user.dart';
@@ -54,8 +55,21 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text('Entrar'),
-              Text('Por favor, faça login para continuar.'),
+              Text(
+                'Bem vindo!',
+                style: GoogleFonts.openSans(
+                  color: Colors.blue,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'Por favor, faça login para continuar.',
+                style: GoogleFonts.openSans(
+                  color: Colors.blue,
+                  fontSize: 16,
+                ),
+              ),
               CustomTextField(
                 controller: _emailController,
                 label: 'Email',

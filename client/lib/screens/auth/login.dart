@@ -86,7 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: Size.infinite.width,
                 child: ElevatedButton(
                   onPressed: () => _login(context),
-                  child: Text('Entrar'),
+                  child: Text(
+                    'Entrar',
+                    style: GoogleFonts.openSans(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
                 ),
               ),
               Row(

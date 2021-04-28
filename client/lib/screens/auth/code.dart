@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
 import 'package:news/screens/auth/register.dart';
 
@@ -27,8 +28,15 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text('Código convite'),
-              Text('Digite o código contive compartilhado com você'),
+              Text(
+                'Para iniciar seu cadastro, digite abaixo o código do convite compartilhado com você.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.openSans(
+                  color: Colors.blue,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 24),
               CustomTextField(
                 label: 'Código',
                 icon: Icon(Icons.code),

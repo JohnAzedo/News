@@ -55,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              SizedBox(height: 40),
               Text(
                 'Bem vindo!',
                 style: GoogleFonts.openSans(
@@ -70,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 16,
                 ),
               ),
+              SizedBox(height: 36),
               CustomTextField(
                 controller: _emailController,
                 label: 'Email',
@@ -81,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 label: 'Senha',
                 icon: Icon(Icons.lock),
               ),
+              SizedBox(height: 24),
               SizedBox(
                 height: 40,
                 width: Size.infinite.width,

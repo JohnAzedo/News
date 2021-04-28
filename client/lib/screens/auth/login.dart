@@ -105,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Ainda não possui conta? ',

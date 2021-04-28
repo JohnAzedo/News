@@ -81,9 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 label: 'Senha',
                 icon: Icon(Icons.lock),
               ),
-              ElevatedButton(
-                onPressed: () => _login(context),
-                child: Text('Entrar'),
+              SizedBox(
+                height: 40,
+                width: Size.infinite.width,
+                child: ElevatedButton(
+                  onPressed: () => _login(context),
+                  child: Text('Entrar'),
+                ),
               ),
               Row(
                 children: [

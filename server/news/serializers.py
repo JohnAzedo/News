@@ -14,8 +14,20 @@ class CommentSerializer(ModelSerializer):
 
     class Meta:
         model = Comment
+        fields = ['id', 'user', 'news', 'text', 'created_at']
+        extra_kwargs = {
+            'news': {'write_only': True, 'required': True}
+        }
 
-        fields = ['id', 'user', 'text', 'created_at']
+    def create(self, validated_data):
+        user = self.context['request'].user
+        comment = Comment.objects.create(
+            user=user,
+            text=validated_data['text'],
+            news=validated_data['news']
+        )
+
+        return comment
 
 
 class NewsSerializer(ModelSerializer):

@@ -21,16 +21,19 @@ class AuthRepository extends Repository{
     return User.fromJson(response.data);
   }
 
+
   Future<bool> emailAlreadyUsed(String email) async {
     Response response = await dio.get("$ipAddress/$baseUrl/used",
         queryParameters: {'email': email});
     return response.data['used'];
   }
 
+
   Future<bool> checkInviteCode(String code) async {
     Response response = await dio.get("$ipAddress/$baseUrl/invite/$code");
     return response.statusCode == 200;
   }
+
 
   Future<Token> login(User user) async{
     Map<String, dynamic> data = {
@@ -46,6 +49,7 @@ class AuthRepository extends Repository{
     return Token.fromJson(response.data);
   }
 
+
   Future<bool> verifyToken(Token token) async {
     Map<String, dynamic> data = {
       "token": token.access
@@ -58,6 +62,7 @@ class AuthRepository extends Repository{
 
     return response.statusCode == 200;
   }
+
 
   Future<Token> refreshToken(Token token) async {
     Map<String, dynamic> data = {

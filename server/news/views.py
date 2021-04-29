@@ -1,7 +1,8 @@
-from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, \
+    CreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from news.models import News
-from news.serializers import NewsSerializer, NewsListSerializer
+from news.models import News, Comment
+from news.serializers import NewsSerializer, NewsListSerializer, CommentSerializer
 
 
 class NewsListView(ListAPIView):
@@ -16,3 +17,24 @@ class NewsDetailView(RetrieveAPIView):
     queryset = News.objects.all()
     lookup_field = 'pk'
 
+
+class CommentCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+
+
+class CommentListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        news_id = self.kwargs['pk']
+        return Comment.objects.filter(news_id=news_id)
+
+
+class CommentDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+    lookup_field = 'pk'

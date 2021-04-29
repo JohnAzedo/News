@@ -69,9 +69,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 label: 'Confirmar senha',
                 icon: Icon(Icons.lock),
               ),
-              ElevatedButton(
-                onPressed: () => _createUser(),
-                child: Text('Criar'),
+              SizedBox(height: 24),
+              SizedBox(
+                height: 46,
+                width: Size.infinite.width,
+                child: ElevatedButton(
+                  onPressed: () => _createUser(),
+                  child: Text(
+                    'Criar conta',
+                    style: GoogleFonts.openSans(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
               )
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
 import 'package:news/models/token.dart';
 import 'package:news/models/user.dart';
@@ -19,13 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _login(BuildContext context){
+  void _login(BuildContext context) {
     final User user = User(
       email: _emailController.text,
       password: _passwordController.text,
     );
 
-    if(user.email != '' && user.password != ''){
+    if (user.email != '' && user.password != '') {
       _getTokens(context, user);
     } else {
       showCheckNullValuesSnackBar(context);
@@ -48,40 +49,88 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text('Entrar'),
-            Text('Por favor, faça login para continuar.'),
-            CustomTextField(
-              controller: _emailController,
-              label: 'Email',
-              icon: Icon(Icons.email),
-            ),
-            CustomTextField(
-              controller: _passwordController,
-              isPassword: true,
-              label: 'Senha',
-              icon: Icon(Icons.lock),
-            ),
-            ElevatedButton(
-              onPressed: () => _login(context),
-              child: Text('Entrar'),
-            ),
-            Row(
-              children: [
-                Text('Não possui conta ainda? '),
-                RichText(
-                  text: TextSpan(
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+      body: SafeArea(
+        top: true,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  SizedBox(height: 60),
+                  Text(
+                    'Bem vindo!',
+                    style: GoogleFonts.openSans(
+                      color: Colors.blue,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Por favor, faça login para continuar.',
+                    style: GoogleFonts.openSans(
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(height: 36),
+                  CustomTextField(
+                    controller: _emailController,
+                    label: 'Email',
+                    icon: Icon(Icons.email),
+                  ),
+                  CustomTextField(
+                    controller: _passwordController,
+                    isPassword: true,
+                    label: 'Senha',
+                    icon: Icon(Icons.lock),
+                  ),
+                  SizedBox(height: 24),
+                  SizedBox(
+                    height: 46,
+                    width: Size.infinite.width,
+                    child: ElevatedButton(
+                      onPressed: () => _login(context),
+                      child: Text(
+                        'Entrar',
+                        style: GoogleFonts.openSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Ainda não possui conta? ',
+                    style: GoogleFonts.openSans(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
                       text: 'Cadastre-se',
+                      style: GoogleFonts.openSans(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => navigateToInviteCode(context)),
-                )
-              ],
-            )
-          ],
+                        ..onTap = () => navigateToInviteCode(context),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -116,10 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void navigateToNews(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ListNews(),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed('/listNews');
   }
 }

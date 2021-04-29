@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
 import 'package:news/screens/auth/register.dart';
 
@@ -10,29 +9,40 @@ class InviteCodeScreen extends StatefulWidget {
 }
 
 class _InviteCodeScreenState extends State<InviteCodeScreen> {
-
-  void navigateToRegister(BuildContext context){
+  void navigateToRegister(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => RegisterScreen(),
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text('Código convite'),
-            Text('Digite o código contive compartilhado com você'),
-            CustomTextField(
-              label: 'Código',
-              icon: Icon(Icons.code),
-            ),
-          ],
+      appBar: AppBar(
+        title: Text('Criar Conta 1/2'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Text(
+                'Para iniciar seu cadastro, digite abaixo o código do convite compartilhado com você.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.openSans(
+                  color: Colors.blue,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 24),
+              CustomTextField(
+                label: 'Código',
+                icon: Icon(Icons.code),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

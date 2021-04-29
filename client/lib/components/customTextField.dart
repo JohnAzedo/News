@@ -22,12 +22,12 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: icon,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue),
             borderRadius: BorderRadius.all(
-              Radius.circular(16.0),
+              Radius.circular(4.0),
             ),
           ),
           contentPadding:

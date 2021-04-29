@@ -10,6 +10,7 @@ distro==1.4.0
 Django==3.2
 django-rest-framework==0.1.0
 djangorestframework==3.12.4
+djangorestframework-simplejwt==4.6.0
 html5lib==1.0.1
 idna==2.8
 ipaddr==2.2.0
@@ -17,7 +18,9 @@ lockfile==0.12.2
 msgpack==0.6.2
 packaging==20.3
 pep517==0.8.2
+Pillow==8.2.0
 progress==1.5
+PyJWT==2.0.1
 pyparsing==2.4.6
 pytoml==0.1.21
 pytz==2021.1

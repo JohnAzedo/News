@@ -13,20 +13,19 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
   final _controller = TextEditingController();
   final repository = AuthRepository();
 
-  Future<bool> _checkInviteCode(String code) async {
-    return repository.checkInviteCode(code)
-        .then((isValid) => true)
-        .catchError((onError) => false);
+  Future<void> _checkInviteCode(BuildContext context, String code) async {
+    return repository.checkInviteCode(code).then((isValid) {
+      navigateToRegister(context);
+    }).catchError((onError) {
+      debugPrint(onError.toString());
+      showInvalidCodeSnackBar(context);
+    });
   }
 
   void fabPressed(BuildContext context) async {
     String code = _controller.text;
     if (code.length >= 8) {
-      if (await _checkInviteCode(code.toUpperCase())) {
-        navigateToRegister(context);
-      } else {
-        showInvalidCodeSnackBar(context);
-      }
+      _checkInviteCode(context, code.toUpperCase());
     }
   }
 

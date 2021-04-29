@@ -3,6 +3,7 @@ import 'package:news/models/token.dart';
 import 'package:news/repositories/auth.dart';
 import 'package:news/screens/auth/login.dart';
 import 'package:news/screens/news/list.dart';
+import 'package:news/screens/tabs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -34,7 +35,7 @@ class CustomSplashScreen extends StatelessWidget {
     }
 
     if (logged) {
-      return ListNews();
+      return TabsScreen();
     }
     return LoginScreen();
   }
@@ -50,7 +51,6 @@ class CustomSplashScreen extends StatelessWidget {
     return SplashScreen(
       seconds: 2,
       navigateAfterFuture: alreadyLogged(),
-      image: Image.asset('assets/images/icon.png'),
       backgroundColor: Theme.of(context).primaryColor,
       useLoader: true,
     );

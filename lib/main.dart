@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:news/screens/news/list.dart';
 import 'package:news/screens/splash.dart';
+import 'package:news/screens/tabs.dart';
 
 void main() => runApp(NewsApp());
 
@@ -16,7 +17,7 @@ class NewsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: CustomSplashScreen(),
       routes: {
-        "/listNews": (_) => new ListNews(),
+        "/listNews": (_) => new TabsScreen(),
       },
     );
   }

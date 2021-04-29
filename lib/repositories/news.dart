@@ -5,6 +5,7 @@ import 'package:news/models/comment.dart';
 import 'package:news/models/news.dart';
 import 'package:news/models/token.dart';
 import 'package:news/repositories/repository.dart';
+import 'package:news/screens/news/list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NewsRepository extends Repository {
@@ -27,6 +28,32 @@ class NewsRepository extends Repository {
     Options(headers: {'Authorization': 'Bearer ${this.token.access}'});
 
     Response response = await dio.get("$ipAddress/$baseUrl", options: options);
+    final List<News> news = [];
+    for (dynamic json in response.data) {
+      news.add(News.fromJson(json));
+    }
+    return news;
+  }
+
+  Future<List<News>> fetchFavoriteNews() async {
+    await _getToken();
+    final options =
+    Options(headers: {'Authorization': 'Bearer ${this.token.access}'});
+
+    Response response = await dio.get("$ipAddress/$baseUrl/favorites", options: options);
+    final List<News> news = [];
+    for (dynamic json in response.data) {
+      news.add(News.fromJson(json));
+    }
+    return news;
+  }
+
+  Future<List<News>> fetchReadNews() async {
+    await _getToken();
+    final options =
+    Options(headers: {'Authorization': 'Bearer ${this.token.access}'});
+
+    Response response = await dio.get("$ipAddress/$baseUrl/read", options: options);
     final List<News> news = [];
     for (dynamic json in response.data) {
       news.add(News.fromJson(json));
@@ -65,5 +92,35 @@ class NewsRepository extends Repository {
     return Comment.fromJson(response.data);
   }
 
+
+  Future<void> markAsRead(int id) async {
+    await _getToken();
+    final options =
+    Options(headers: {'Authorization': 'Bearer ${this.token.access}'});
+
+    Map<String, dynamic> data = {
+      "news": id,
+      "read":true,
+      "liked":false
+    };
+
+    Response response =
+    await dio.post("$ipAddress/$baseUrl/open", data: data, options: options);
+  }
+
+  Future<void> markAsLiked(int id) async {
+    await _getToken();
+    final options =
+    Options(headers: {'Authorization': 'Bearer ${this.token.access}'});
+
+    Map<String, dynamic> data = {
+      "news": id,
+      "liked": true,
+      "read":true
+    };
+
+    Response response =
+    await dio.post("$ipAddress/$baseUrl/open", data: data, options: options);
+  }
 
 }

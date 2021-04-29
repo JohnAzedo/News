@@ -165,10 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void navigateToNews(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ListNews(),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed('/listNews');
   }
 }

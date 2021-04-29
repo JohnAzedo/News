@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/components/customTextField.dart';
+import 'package:news/repositories/auth.dart';
 import 'package:news/screens/auth/register.dart';
 
 class InviteCodeScreen extends StatefulWidget {
@@ -9,6 +10,26 @@ class InviteCodeScreen extends StatefulWidget {
 }
 
 class _InviteCodeScreenState extends State<InviteCodeScreen> {
+  final _controller = TextEditingController();
+  final repository = AuthRepository();
+
+  Future<bool> _checkInviteCode(String code) async {
+    return repository.checkInviteCode(code)
+        .then((isValid) => true)
+        .catchError((onError) => false);
+  }
+
+  void fabPressed(BuildContext context) async {
+    String code = _controller.text;
+    if (code.length >= 8) {
+      if (await _checkInviteCode(code.toUpperCase())) {
+        navigateToRegister(context);
+      } else {
+        showInvalidCodeSnackBar(context);
+      }
+    }
+  }
+
   void navigateToRegister(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -38,6 +59,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
               ),
               SizedBox(height: 24),
               CustomTextField(
+                controller: _controller,
                 label: 'Código',
                 icon: Icon(Icons.code),
               ),
@@ -47,8 +69,17 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward),
-        onPressed: () => navigateToRegister(context),
+        onPressed: () => fabPressed(context),
       ),
     );
+  }
+
+  void showInvalidCodeSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Código inválido'),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

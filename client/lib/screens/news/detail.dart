@@ -4,11 +4,11 @@ import 'package:news/components/progress.dart';
 import 'package:news/models/comment.dart';
 import 'package:news/models/news.dart';
 import 'package:news/repositories/news.dart';
-import 'package:news/screens/news/components/commentCard.dart';
+import 'package:news/screens/news/components/comments/card.dart';
+import 'package:news/screens/news/components/comments/list.dart';
 
 class DetailNews extends StatefulWidget {
   final int _newsId;
-
   DetailNews(this._newsId);
 
   @override
@@ -17,6 +17,8 @@ class DetailNews extends StatefulWidget {
 
 class _DetailNewsState extends State<DetailNews> {
   final NewsRepository repository = NewsRepository();
+  final _scrollController = ScrollController(keepScrollOffset: true);
+
   News _news;
 
   @override
@@ -63,6 +65,7 @@ class _DetailNewsState extends State<DetailNews> {
             case ConnectionState.done:
               this._news = news;
               return SingleChildScrollView(
+                controller: _scrollController,
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
@@ -166,52 +169,7 @@ class _DetailNewsState extends State<DetailNews> {
                           color: Colors.black54,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Comentários',
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(fontSize: 20),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 4.0,
-                        ),
-                        child: Column(
-                          children: [
-                            TextField(
-                              decoration: InputDecoration(
-                                  labelText: "Deixe seu comentário"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () => {},
-                              child: Text(
-                                'Enviar',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16.0,
-                          horizontal: 0.0,
-                        ),
-                        child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: _news.comments.length,
-                          itemBuilder: (BuildContext context, index) {
-                            Comment comment = _news.comments[index];
-                            return CardComment(comment: comment);
-                          },
-                        ),
-                      )
+                      CommentList(news)
                     ],
                   ),
                 ),

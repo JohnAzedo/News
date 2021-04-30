@@ -1,6 +1,5 @@
-# news
-
-  Mobile app to read news about many topics. 
+# News
+ Aplicativo para ler notícias sobre tecnologia
 
 ### Members
 - Davi Rodrigues de Medeiros

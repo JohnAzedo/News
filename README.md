@@ -1,10 +1,8 @@
 # News
+ Aplicativo para ler notícias sobre tecnologia
 
-  Mobile app to read news about many topics. 
-
-### Members
+### Membros
 - Davi Rodrigues de Medeiros
 - João Pedro Vieira de Oliveira Limão
 
-
-### Invitation Code: `af123456`
+Para realizar seu cadastro, utilize o seguinte código de convite: `af123456`

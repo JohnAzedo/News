@@ -60,16 +60,19 @@ class _CommentListState extends State<CommentList> {
                   labelText: "Deixe seu comentário",
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  final comment = Comment(text: _controller.text);
-                  if (comment.text != '') {
-                    _createComment(comment);
-                    _controller.text = '';
-                  }
-                },
-                child: Text(
-                  'Enviar',
+              SizedBox(
+                width: Size.infinite.width,
+                child: ElevatedButton(
+                  onPressed: () {
+                    final comment = Comment(text: _controller.text);
+                    if (comment.text != '') {
+                      _createComment(comment);
+                      _controller.text = '';
+                    }
+                  },
+                  child: Text(
+                    'Enviar',
+                  ),
                 ),
               ),
             ],

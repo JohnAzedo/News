@@ -1,4 +1,4 @@
-# News
+# Notícias
  Aplicativo para ler notícias sobre tecnologia
 
 ### Membros

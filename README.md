@@ -7,4 +7,6 @@
 
 Para realizar seu cadastro, utilize o seguinte código de convite: `af123456`
 
-Para visualizar o video mostrando as funcionalidades desenvolvidas acesse: https://drive.google.com/file/d/1-mpelZR1oEKEu4RIpye_xnc4l2w212-Z/view?usp=sharing
+Vídeo de apresentação: https://drive.google.com/file/d/1-mpelZR1oEKEu4RIpye_xnc4l2w212-Z/view?usp=sharing
+
+Servidor: https://github.com/JohnAzedo/NewsletterServer

@@ -1,4 +1,4 @@
-# Notícias
+# NewsLetter
  Aplicativo para ler notícias sobre tecnologia
 
 ### Membros
